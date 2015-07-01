@@ -73,6 +73,9 @@ proto.onChange = function(element) {
 	//@todo 缓存一下下个select
 	if (target.length) {
 		var upid = $(element).val();
+		if (upid * 1 === 0) {
+			return;
+		}
 		_this.renderTo(upid, target);
 	} else {
 		// 不存在下一个，最后一个变化时emit change
