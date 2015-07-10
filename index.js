@@ -26,7 +26,8 @@ var defaultList = ['省份', '城市', '区', '街道'];
 
 proto.renderTo = function(upid, target) {
 	var _this = this;
-	_getByUpid(upid || 0, function(data) {
+	var id = upid || 0;
+	_getByUpid(id, function(data) {
 
 		// 北京，天津等没有下一级
 		// 如果从有4级的到只有3级的，应该清除select
@@ -39,7 +40,7 @@ proto.renderTo = function(upid, target) {
 			name: data[0] ? defaultList[data[0].level - 1] : '---',
 			level: 0
 		});
-		var html = '<select>';
+		var html = '<select data-upid="' + id + '">';
 		for (var i = 0; i < data.length; i++) {
 			html += '<option value="' + data[i].id + '">' + data[i].name + '</option>'
 		}
@@ -69,6 +70,14 @@ proto.getValue = function() {
 
 proto.onChange = function(element) {
 	var _this = this;
+	var upid = element.getAttribute('data-upid');
+	// 触发省份更改事件
+	if (upid * 1 === 0) {
+			_this.emit('provinceChange', {
+				name: $(element).find('option:selected').text(),
+				id: $(element).val() * 1
+			});
+	}
 	var target = $(element).closest('div').next();
 	//@todo 缓存一下下个select
 	if (target.length) {

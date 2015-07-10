@@ -31,3 +31,22 @@ var seeditCityPc = require('seedit-city-pc');
 ### change
 
 监听变化，事件参数和`getValue`一致
+
+### provinceChange
+
+监听省份变化，参数：
+
+```
+{
+	name:"北京",
+	id:1
+}
+```
+
+当省份不选择时，参数：
+```
+{
+	name:"全部",
+	id:0
+}
+```

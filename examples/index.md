@@ -15,6 +15,8 @@ new seeditCityPc({
 	level:2
 }).on('change',function(data){
 	console.log(data);
+}).on('provinceChange',function(data){
+	console.log(data);
 });
 ````
 
