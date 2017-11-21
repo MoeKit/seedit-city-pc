@@ -95,7 +95,7 @@ proto.onChange = function(element) {
 function _getByUpid(upid, fn) {
 	$.ajax({
 		type: 'GET',
-		url: 'http://common.' + domain + '/bbs/common_district.jsonp',
+		url: '//common.' + domain + '/bbs/common_district.jsonp',
 		data: {
 			upid: upid || 0
 		},
